@@ -62,3 +62,6 @@ variable "admin"{
 variable "password"{
     description = "password of the vm"
 }
+variable "dns_server"{
+    
+}

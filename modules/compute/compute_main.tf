@@ -15,26 +15,12 @@ resource "azurerm_network_interface" "primary" {
   name                = "${var.vmname}_nic_1"
   location            = data.azurerm_resource_group.rg.location
   resource_group_name = data.azurerm_resource_group.rg.name
-
+  dns_servers         = var.dns_server
   ip_configuration {
     name                                     = "${var.vmname}_ipconfig"
     subnet_id                                = data.azurerm_subnet.subnet.id
     private_ip_address_allocation            = "dynamic"
     primary                                  = true
-  }
-}
-
-# create a secondary network interface
-resource "azurerm_network_interface" "secondary" {
-  name                = "${var.vmname}_nic_2"
-  location            = data.azurerm_resource_group.rg.location
-  resource_group_name = data.azurerm_resource_group.rg.name
-
-  ip_configuration {
-    name                                     = "${var.vmname}_ipconfig"
-    subnet_id                                = data.azurerm_subnet.subnet.id
-    private_ip_address_allocation            = "dynamic"
-    primary                                  = false
   }
 }
 
@@ -55,7 +41,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
     name                  = var.vmname
     location              = azurerm_network_interface.primary.location
     resource_group_name   = data.azurerm_resource_group.rg.name
-    network_interface_ids = ["${azurerm_network_interface.secondary.id}"]
+    network_interface_ids = ["${azurerm_network_interface.primary.id}"]
     size               = var.vmsize
     availability_set_id   = var.avset_id
     admin_username = var.admin

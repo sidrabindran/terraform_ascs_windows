@@ -60,3 +60,7 @@ variable "avset_id"{
 variable "backend_ip_id"{
     description = "id for backendpool"
 }
+
+variable "dns_server"{
+
+}

@@ -82,6 +82,7 @@ module "ascsvm1" {
   osversion      = var.osversion
   admin          = var.admin
   password       = var.password
+  dns_server     = var.dns_server
   avset_id       = azurerm_availability_set.avsetascs.id
   backend_ip_id  = azurerm_lb_backend_address_pool.example.id
 }
@@ -102,6 +103,7 @@ module "ascsvm2" {
   osversion      = var.osversion
   admin          = var.admin
   password       = var.password
+  dns_server     = var.dns_server
   avset_id       = azurerm_availability_set.avsetascs.id
   backend_ip_id  = azurerm_lb_backend_address_pool.example.id
 }

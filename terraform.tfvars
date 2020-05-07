@@ -15,3 +15,4 @@ ossku       = "2016-Datacenter"
 osversion   = "latest"
 admin       = "vmadmin"
 password    = "Microsoft@123456"
+dns_server  = ["10.2.1.4"]
